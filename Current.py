@@ -1,5 +1,5 @@
 import random, pickle
-limit=100 #the min/max == -limit/limit eg. if limit == 10: min/max == -10²/10²
+limit=30 #the min/max == -limit/limit eg. if limit == 10: min/max == -10²/10²
 Dupes=0 #to list number of dupe tests. (0 matching rows are not checked due to how long it takes)
 
 def LoadRes():
@@ -146,13 +146,13 @@ def removedupe(L): #removes duplicate enteries
 array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = LoadRes() #Loads old results
 Current = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win))) #calculates current number of tests
 print("Dont run too many tests at once, as results are only saved at the end")
-target=(int(input("There are %s current tests. How many more? " % (Current))))+Current #number of tests to be done
+target=(int(input("There are %s current tests. How many more? " % ("{:,d}".format(Current)))))+Current #number of tests to be done
 loops = target - Current # inacurate estimate: number of loops performed
 while ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))< target: #while number of tests less than target
     a, b, c, d, e, f, g, h, i = GenerateNumbers(limit) #generate 9 unique numbers
     array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = Calculate(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,a,b,c,d,e,f,g,h,i) #test 9 numbers
 
-print("before purification:",((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win))))
+print("before purification:","{:,d}".format(((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))))
 print("Removing squares with 0 matching rows")
 array=[]
 print("Removing duplicates 1/7")
@@ -171,7 +171,7 @@ print("Removing duplicates 7/7")
 
 Win = removedupe(Win)
 print("Removing duplicates complete")
-print("After purification:",(len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("After purification:","{:,d}".format((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win))))
 
 
 endingg(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win) #saves everything at the end

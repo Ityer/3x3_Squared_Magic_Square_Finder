@@ -142,7 +142,6 @@ def removedupe(L): #removes duplicate enteries
            else:
                last = L[i]
     return L
-
 array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = LoadRes() #Loads old results
 Current = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win))) #calculates current number of tests
 print("Dont run too many tests at once, as results are only saved at the end")
@@ -151,25 +150,41 @@ loops = target - Current # inacurate estimate: number of loops performed
 while ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))< target: #while number of tests less than target
     a, b, c, d, e, f, g, h, i = GenerateNumbers(limit) #generate 9 unique numbers
     array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = Calculate(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,a,b,c,d,e,f,g,h,i) #test 9 numbers
-
-print("before purification:","{:,d}".format(((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))))
+before = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("before purification:","{:,d}".format(before))
 print("Removing squares with 0 matching rows")
 array=[]
+afterOne = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(before-afterOne)," Removed")
 print("Removing duplicates 1/7")
 twoeM = removedupe(twoeM)
+afterTwo = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(afterOne-afterTwo)," Removed")
 print("Removing duplicates 2/7")
 threeeM = removedupe(threeeM)
+afterThree = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(afterTwo-afterThree)," Removed")
 print("Removing duplicates 3/7")
 foureM = removedupe(foureM)
+afterFour = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(afterThree-afterFour)," Removed")
 print("Removing duplicates 4/7")
 fiveeM = removedupe(fiveeM)
+afterFive = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(afterFour-afterFive)," Removed")
 print("Removing duplicates 4/7")
 sixeM = removedupe(sixeM)
+afterSix = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(afterFive-afterSix)," Removed")
 print("Removing duplicates 6/7")
 seveneM = removedupe(seveneM)
+afterSeven = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(afterSix-afterSeven)," Removed")
 print("Removing duplicates 7/7")
 
 Win = removedupe(Win)
+afterEaight = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
+print("{:,d}".format(afterSeven-afterEaight)," Removed")
 print("Removing duplicates complete")
 print("After purification:","{:,d}".format((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win))))
 

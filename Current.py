@@ -42,7 +42,7 @@ def GenerateNumbers(limit): #generates list of 9 unique numbers from -limit to l
         tmp=False #close the loop, ready for next letter
     return a, b, c, d, e, f, g, h, i #returns the 9 numbers
 
-def most_common(lst,lstt,array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win):#lst = results. lstt= original numbers
+def most_common(lst,lstt,array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,goal):#lst = results. lstt= original numbers
     Occ=0 #counts how many times the most common result appears
     mcn = max(set(lst), key=lst.count) #most common result
     for i in lst: #how many of said most common result
@@ -64,10 +64,10 @@ def most_common(lst,lstt,array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win):#l
         seveneM.append(lstt) #save to list
     elif Occ==8: # if all results match
         Win.append(lstt) #save to list
-    print((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win))) #prints how many tests there are
+    print(((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win))),"/",goal) #prints how many tests there are
     return array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win #returns the lists
 
-def Calculate(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,a,b,c,d,e,f,g,h,i):
+def Calculate(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,a,b,c,d,e,f,g,h,i,goal):
     aa=a*a #square the numbers
     bb=b*b
     cc=c*c 
@@ -87,7 +87,7 @@ def Calculate(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,a,b,c,d,e,f,g,
     d2=gg+ee+cc
     SqNumbers=[a,b,c,d,e,f,g,h,i] #save original numbers
     awnsers=[h1,h2,h3,v1,v2,v3,d1,d2]#save results
-    array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = most_common(awnsers,SqNumbers,array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win)#check most common result and save to relevent list
+    array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = most_common(awnsers,SqNumbers,array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,goal)#check most common result and save to relevent list
     return array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win #return the lists
 
 def endingg(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win): #Runs at the end. it prints and saves the results.
@@ -147,9 +147,13 @@ Current = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+
 print("Dont run too many tests at once, as results are only saved at the end")
 target=(int(input("There are %s current tests. How many more? " % ("{:,d}".format(Current)))))+Current #number of tests to be done
 loops = target - Current # inacurate estimate: number of loops performed
+
+
 while ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))< target: #while number of tests less than target
     a, b, c, d, e, f, g, h, i = GenerateNumbers(limit) #generate 9 unique numbers
-    array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = Calculate(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,a,b,c,d,e,f,g,h,i) #test 9 numbers
+    array, twoeM, threeeM, foureM, fiveeM, sixeM, seveneM, Win = Calculate(array,twoeM,threeeM,foureM,fiveeM,sixeM,seveneM,Win,a,b,c,d,e,f,g,h,i,target) #test 9 numbers
+	
+	
 before = ((len(array))+(len(twoeM))+(len(threeeM))+(len(foureM))+(len(fiveeM))+(len(sixeM))+(len(seveneM))+(len(Win)))
 print("before purification:","{:,d}".format(before))
 print("Removing squares with 0 matching rows")
